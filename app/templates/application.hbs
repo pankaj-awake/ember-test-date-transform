@@ -1,7 +1,37 @@
-{{page-title "EmberTestDateTransform"}}
+{{page-title "TestEmberDataDateTransform"}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+{{#if this.model}}
+  <p>Welcome, Ember Community Member!</p>
+
+  <p>
+    This is a demonstration that the <b>ember-data date transform (v4.12.0 onwards)</b> triggers a change on reload of the record
+    even when the value remains same.
+  </p>
+
+  <p>
+    The date is: {{this.model.createdAt}}    
+  </p>
+
+  <p>
+    <b>See the console for the output of the change event.</b>
+    "createdAt" is a date attribute, and it is being logged every time you click the button.
+
+    But the attributes "name" and "isFake" are not being logged on reload.
+  </p>
+
+  {{log this.model.createdAt "createdAt"}}
+
+  {{log this.model.name "name"}}
+
+  {{log this.model.isFake "isFake"}}
+
+  <p>
+    <button
+      onclick={{fn this.reloadModel this.model}}
+    >
+      Reload record
+    </button>
+  </p>
+{{/if}}
 
 {{outlet}}
